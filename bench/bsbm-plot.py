@@ -43,7 +43,7 @@ def plot_usecase(name: str):
     for query, t in avgresults_by_query.items():
         for size, value_by_run in t.items():
             avg = sum(value_by_run.values()) / len(value_by_run)
-            if not all(abs(v - avg) < 1 for v in value_by_run.values()):
+            if any(abs(v - avg) >= 1 for v in value_by_run.values()):
                 print(
                     f'Strange value for average results for usecase {name} of size {size} and query {query}: {value_by_run}')
 
